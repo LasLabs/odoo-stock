@@ -15,7 +15,7 @@ Available addons
 ----------------
 addon | version | summary
 --- | --- | ---
-[module_name](module_name/) | 9.0.0.0.0 | Template module
+[stock_delivery](stock_delivery/) | 9.0.1.0.0 | Extended picking delivery and rate handling logic
 
 
 Unported addons
