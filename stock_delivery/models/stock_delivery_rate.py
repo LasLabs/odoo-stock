@@ -10,9 +10,9 @@ class StockDeliveryRate(models.Model):
     _name = 'stock.delivery.rate'
     _description = 'Stock Delivery Rate'
 
-    picking_id = fields.Many2one(
-        string='Stock Picking',
-        comodel_name='stock.picking',
+    group_id = fields.Many2one(
+        string='Delivery Group',
+        comodel_name='stock.delivery.group',
         required=True,
     )
     partner_id = fields.Many2one(
