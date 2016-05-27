@@ -14,23 +14,30 @@ This module provides extended stock functionality associated with deliveries, su
 * Concept of tracking information
 * Concept of tracking stages & locations
 
-
 Installation
 ============
 
-@TODO:
 
 Configuration
 =============
 
-@TODO:
-
+* Enable package tracking in Warehouse settings
 
 Usage
 =====
 
-@TODO:
+Most of this module revolves around data modules, however a few actions do exist
 
+---------------
+Delivery Wizard
+---------------
+
+The Delivery Wizard is accessed when `Put In Pack` is utilized in a stock picking.
+
+Creates a Stock Quant Package & associates to Delivery Group + Delivery Package.
+
+This would be the first stage in triggering a shipment, and subsequent label quote if utilizing
+an external system.
 
 Credits
 =======

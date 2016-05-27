@@ -23,6 +23,11 @@ class StockDeliveryGroup(models.Model):
         comodel_name='stock.delivery.pack',
         required=True,
     )
+    pack_operation_ids = fields.Many2many(
+        string='Pack Operations',
+        comodel_name='stock.pack.operation',
+        related='pack_id.pack_operation_ids',
+    )
     rate_ids = fields.One2many(
         string='Delivery Rates',
         comodel_name='stock.delivery.rate',

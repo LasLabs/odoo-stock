@@ -22,6 +22,7 @@
         "views/stock_delivery_pack_template_view.xml",
         "views/stock_menu.xml",
         "views/stock_picking_view.xml",
+        'wizards/stock_delivery_new_view.xml',
         "data/decimal_precision_data.xml",
     ],
 }

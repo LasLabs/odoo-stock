@@ -15,12 +15,12 @@
             <xpath expr="//page[@name='extra']" position="inside">
                 <separator string="Delivery Information" />
                 <group>
-                    <field name="delivery_pack_ids" />
                     <field name="delivery_group_ids"
                            context="{'default_picking_id': id,
                                      'default_service_id': carrier_id,
                                      }">
                         <tree>
+                            <field name="pack_id" />
                             <field name="carrier_tracking_ref" />
                             <field name="date_delivery_est" widget="date" />
                             <field name="service_id" />

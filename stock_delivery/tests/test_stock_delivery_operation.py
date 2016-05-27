@@ -33,7 +33,10 @@ class TestStockDeliveryOperation(TransactionCase):
         self.pack_tpl_id = self.env['stock.delivery.pack.template'].create(
             self.pack_vals
         )
-        pack_vals = {'pack_template_id': self.pack_tpl_id.id}
+        quant_pack_id = self.env['stock.quant.package'].create({})
+        pack_vals = {'pack_template_id': self.pack_tpl_id.id,
+                     'quant_pack_id': quant_pack_id.id,
+                     }
         pack_vals.update(self.pack_vals)
         self.pack_id = self.env['stock.delivery.pack'].create(pack_vals)
         self.group_id = self.env['stock.delivery.group'].create({

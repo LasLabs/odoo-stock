@@ -30,3 +30,17 @@ class StockPicking(models.Model):
                 g.pack_id.id for g in rec_id.delivery_group_ids
             ]
             rec_id.number_of_packages = len(rec_id.delivery_pack_ids)
+
+    @api.multi
+    def put_in_pack(self):
+        package_id_int = super(StockPicking, self).put_in_pack()
+        if package_id_int:
+            pack_op_ids = self.env['stock.pack.operation'].search([
+                ('result_package_id', '=', package_id_int),
+            ])
+            rec_id = self.env['stock.delivery.new'].create({
+                'quant_pack_id': package_id_int,
+                'pack_operation_ids': [(6, 0, [o.id for o in pack_op_ids])],
+                'picking_ids': [(6, 0, [p.id for p in self])],
+            })
+            return rec_id.action_show_wizard()
