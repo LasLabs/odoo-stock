@@ -55,7 +55,6 @@ class StockDeliveryRate(models.Model):
     delivery_days = fields.Integer(required=True)
     date_delivery = fields.Datetime(
         string='Est Delivery Date',
-        required=True,
     )
     is_guaranteed = fields.Boolean(
         string='Date is Guaranteed?',
