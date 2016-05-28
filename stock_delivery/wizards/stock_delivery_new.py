@@ -56,11 +56,10 @@ class StockDeliveryNew(models.TransientModel):
                 'Must assign or create a delivery pack in order to continue.',
             ))
         # @TODO: Support for multiple pickings
-        self.env['stock.delivery.group'].create({
+        return self.env['stock.delivery.group'].create({
             'picking_id': self.picking_ids[0].id,
             'pack_id': self.delivery_pack_id.id,
         })
-        return True
 
     @api.multi
     def action_show_wizard(self):
