@@ -11,22 +11,24 @@
         <field name="name">stock.delivery.pack.template.view.form</field>
         <field name="model">stock.delivery.pack.template</field>
         <field name="arch" type="xml">
-            <form string="Delivery Package">
+            <form string="Delivery Package Template">
                 <sheet>
                     <group>
                         <field name="name" />
                         <field name="active" />
                     </group>
-                    <group string="Dimensions">
+                    <group string="Physical">
                         <group>
                             <field name="length" />
                             <field name="width" />
                             <field name="height" />
+                            <field name="weight" />
                         </group>
                         <group>
                             <field name="length_uom_id" />
                             <field name="width_uom_id" />
                             <field name="height_uom_id" />
+                            <field name="weight_uom_id" />
                         </group>
                     </group>
                 </sheet>
@@ -38,7 +40,7 @@
         <field name="name">stock.delivery.pack.template.view.tree</field>
         <field name="model">stock.delivery.pack.template</field>
         <field name="arch" type="xml">
-            <tree string="Delivery Packages">
+            <tree string="Delivery Package Templates">
                 <field name="name"/>
                 <field name="length" />
                 <field name="length_uom_id" />

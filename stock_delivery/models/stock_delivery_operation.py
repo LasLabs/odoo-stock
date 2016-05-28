@@ -32,11 +32,11 @@ class StockDeliveryOperation(models.Model):
         string='Stock Picking',
         comodel_name='stock.picking',
         related='group_id.picking_id',
-        required=True,
     )
     location_id = fields.Many2one(
         string='Location',
         comodel_name='stock.delivery.location',
+        related='picking_id.location_id'
     )
     state = fields.Selection(
         OPERATION_STATES,

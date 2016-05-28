@@ -18,6 +18,21 @@ class StockDeliveryGroup(models.Model):
         comodel_name='stock.picking',
         required=True,
     )
+    pack_id = fields.Many2one(
+        string='Delivery Pack',
+        comodel_name='stock.delivery.pack',
+        required=True,
+    )
+    pack_operation_ids = fields.Many2many(
+        string='Pack Operations',
+        comodel_name='stock.pack.operation',
+        related='pack_id.pack_operation_ids',
+    )
+    rate_ids = fields.One2many(
+        string='Delivery Rates',
+        comodel_name='stock.delivery.rate',
+        inverse_name='group_id',
+    )
     operation_ids = fields.One2many(
         string='Delivery Ops',
         comodel_name='stock.delivery.operation',
@@ -26,10 +41,6 @@ class StockDeliveryGroup(models.Model):
     label_id = fields.Many2one(
         string='Delivery Label',
         comodel_name='stock.delivery.label',
-    )
-    pack_id = fields.Many2one(
-        string='Delivery Pack',
-        comodel_name='stock.delivery.pack',
     )
     move_id = fields.Many2one(
         string='Account Move',

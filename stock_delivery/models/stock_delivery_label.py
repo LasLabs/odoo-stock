@@ -13,12 +13,16 @@ class StockDeliveryLabel(models.Model):
     picking_id = fields.Many2one(
         string='Stock Picking',
         comodel_name='stock.picking',
+        related='group_id.picking_id',
+    )
+    pack_id = fields.Many2one(
+        string='Delivery Package',
+        comodel_name='stock.delivery.pack',
         required=True,
     )
-    group_ids = fields.One2many(
-        string='Delivery Groups',
+    group_id = fields.Many2one(
+        string='Delivery Group',
         comodel_name='stock.delivery.group',
-        inverse_name='label_id',
     )
     date_generated = fields.Datetime(
         required=True,
