@@ -50,12 +50,12 @@
                                 <group string="Shipment/Quotes">
                                     <field name="label_id"
                                            context="{'default_picking_id': id,
-                                                     'default_service_id': carrier_id,
+                                                     'default_service_id': service_id,
                                                      }"
                                            />
                                     <field name="rate_ids"
                                            context="{'default_picking_id': id,
-                                                     'default_service_id': carrier_id,
+                                                     'default_service_id': service_id,
                                                      }">
                                         <tree>
                                             <field name="partner_id" />
