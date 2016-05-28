@@ -28,7 +28,6 @@ Usage
 
 Most of this module revolves around data modules, however a few actions do exist
 
----------------
 Delivery Wizard
 ---------------
 
