@@ -11,3 +11,4 @@ from . import stock_delivery_pack_template
 from . import stock_delivery_pack
 from . import stock_delivery_rate
 from . import stock_picking
+from . import delivery_carrier
