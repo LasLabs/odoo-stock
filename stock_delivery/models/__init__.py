@@ -12,3 +12,4 @@ from . import stock_delivery_pack
 from . import stock_delivery_rate
 from . import stock_picking
 from . import delivery_carrier
+from . import stock_pack_operation
