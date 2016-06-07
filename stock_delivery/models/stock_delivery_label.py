@@ -3,7 +3,6 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from openerp import models, fields
-import openerp.addons.decimal_precision as dp
 
 
 class StockDeliveryLabel(models.Model):
@@ -23,19 +22,24 @@ class StockDeliveryLabel(models.Model):
     group_id = fields.Many2one(
         string='Delivery Group',
         comodel_name='stock.delivery.group',
+        related='rate_id.group_id',
     )
     date_generated = fields.Datetime(
         required=True,
         default=lambda s: fields.Datetime.now(),
     )
+    rate_id = fields.Many2one(
+        string='Rate',
+        comodel_name='stock.delivery.rate',
+    )
+    rate = fields.Float(
+        string='Cost',
+        related='rate_id.rate',
+    )
     currency_id = fields.Many2one(
         string='Currency',
         comodel_name='res.currency',
-        required=True,
-    )
-    rate = fields.Float(
-        digits=dp.get_precision('Product Price'),
-        required=True,
+        related='rate_id.rate_currency_id',
     )
     img_label = fields.Binary(
         attachment=True,
