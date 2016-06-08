@@ -5,7 +5,7 @@
 {
     "name": "Stock Delivery",
     "summary": "Add additional delivery logic to stock",
-    "version": "9.0.1.1.0",
+    "version": "9.0.1.2.0",
     "category": "Inventory, Logistics, Warehousing",
     "website": "https://laslabs.com/",
     "author": "LasLabs",
