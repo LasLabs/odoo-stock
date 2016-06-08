@@ -34,12 +34,12 @@
                 <footer>
                     <button special="cancel"
                             string="No Delivery"
-                            class="pull-left"
                             />
+                    or
                     <button name="action_create_delivery"
                             type="object"
                             string="Delivery"
-                            class="oe_highlight pull-right"
+                            class="oe_highlight"
                             />
                 </footer>
             </form>

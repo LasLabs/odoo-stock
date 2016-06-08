@@ -122,3 +122,15 @@ class StockDeliveryGroup(models.Model):
             picking_id = self.env['stock.picking'].browse(vals['picking_id'])
             vals['carrier_tracking_ref'] = picking_id.carrier_tracking_ref
         return super(StockDeliveryGroup, self).create(vals)
+
+    @api.multi
+    def name_get(self):
+        res = []
+        for rec_id in self:
+            name = '[{state}] {pack_name}'.format(
+                state=rec_id.state.capitalize(), pack_name=rec_id.pack_id.name,
+            )
+            if rec_id.carrier_tracking_ref:
+                name += ' - ' + rec_id.carrier_tracking_ref
+            res.append((rec_id.id, name))
+        return res

@@ -8,15 +8,17 @@ Stock Delivery
 
 This module provides extended stock functionality associated with deliveries, such as:
 
-* Concept of delivery packaging types & dimensions
-* Concept of multiple delivery rate quotes
+* Multiple carrier deliveries for a stock picking
+* Delivery packaging types & dimensions
+* Concept of multiple delivery rate quotes for a delivery
 * Concept of shipping labels
-* Concept of tracking information
 * Concept of tracking stages & locations
+
+While this module does provide the concepts and wizards, it is not really that useful
+without an external connector module such as ``connector-easypost``.
 
 Installation
 ============
-
 
 Configuration
 =============
@@ -26,7 +28,7 @@ Configuration
 Usage
 =====
 
-Most of this module revolves around data modules, however a few actions do exist
+Most of this module revolves around data models, however a few actions do exist
 
 Delivery Wizard
 ---------------
@@ -37,6 +39,7 @@ Creates a Stock Quant Package & associates to Delivery Group + Delivery Package.
 
 This would be the first stage in triggering a shipment, and subsequent label quote if utilizing
 an external system.
+
 
 Credits
 =======

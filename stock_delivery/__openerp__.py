@@ -23,6 +23,7 @@
         "views/stock_delivery_pack_view.xml",
         "views/stock_menu.xml",
         "views/stock_picking_view.xml",
+        'views/stock_delivery_label_report.xml',
         'wizards/stock_delivery_new_view.xml',
         "data/decimal_precision_data.xml",
     ],

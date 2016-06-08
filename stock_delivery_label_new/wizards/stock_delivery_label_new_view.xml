@@ -18,13 +18,8 @@
                         <field name="picking_id" />
                     </header>
                     <group>
-                        <field name="group_id"
-                               options="{'no_create': True}"
-                               domain="[('picking_id', '=', picking_id), ('state', '=', 'new')]"
-                               />
-                        <field name="rate_id"
-                               domain="[('group_id', '=', group_id)]"
-                               />
+                        <field name="group_id" options="{'no_create': True}" />
+                        <field name="rate_id" options="{'no_create': True}" />
                     </group>
                 </sheet>
                 <footer>

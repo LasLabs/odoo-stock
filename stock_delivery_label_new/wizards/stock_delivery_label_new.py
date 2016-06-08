@@ -27,11 +27,13 @@ class StockDeliveryLabelNew(models.TransientModel):
         string='Delivery Group',
         comodel_name='stock.delivery.group',
         required=True,
+        domain="[('picking_id', '=', picking_id), ('state', '=', 'new')]",
     )
     rate_id = fields.Many2one(
         string='Rate',
         comodel_name='stock.delivery.rate',
         required=True,
+        domain="[('group_id', '=', group_id)]",
     )
 
     @api.multi
