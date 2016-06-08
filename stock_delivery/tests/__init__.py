@@ -4,3 +4,4 @@
 
 from . import test_stock_delivery_group
 from . import test_stock_delivery_operation
+from . import test_stock_pack_operation

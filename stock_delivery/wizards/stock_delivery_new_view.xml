@@ -19,32 +19,11 @@
                                domain="[('quant_pack_id', '=', quant_pack_id)]"
                                context="{'default_quant_pack_id': quant_pack_id,
                                          'default_pack_operation_ids': pack_operation_ids,
-                                         }">
-                            <form string="Delivery Package">
-                                <sheet>
-                                    <group>
-                                        <field name="name" />
-                                        <field name="pack_template_id" />
-                                    </group>
-                                    <group string="Physical">
-                                        <group>
-                                            <field name="length" />
-                                            <field name="width" />
-                                            <field name="height" />
-                                            <field name="weight" />
-                                        </group>
-                                        <group>
-                                            <field name="length_uom_id" />
-                                            <field name="width_uom_id" />
-                                            <field name="height_uom_id" />
-                                            <field name="weight_uom_id" />
-                                        </group>
-                                    </group>
-                                </sheet>
-                            </form>
-                        </field>
-                        <field name="quant_pack_id" />
-                        <field name="pack_operation_ids">
+                                         'default_name': quant_pack_id,
+                                         }"
+                               />
+                        <field name="quant_pack_id" readonly="True" />
+                        <field name="pack_operation_ids" readonly="True">
                             <tree>
                                 <field name="product_id" />
                                 <field name="qty_done" />

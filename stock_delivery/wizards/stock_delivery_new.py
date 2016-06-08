@@ -55,12 +55,20 @@ class StockDeliveryNew(models.TransientModel):
             raise ValidationError(_(
                 'Must assign or create a delivery pack in order to continue.',
             ))
-        # @TODO: Support for multiple pickings
-        self.env['stock.delivery.group'].create({
+        # @TODO: Support for multiple pickings, likely w/ constraints
+        loc_id_int = self.picking_ids[0].location_id.id
+        # @TODO: Better way to identify warehouse, this is sloppy as dung
+        warehouse_id = self.env['stock.warehouse'].search([  # '|',
+            ('lot_stock_id', 'parent_of', loc_id_int),
+        ],
+            limit=1,
+        )
+        return self.env['stock.delivery.group'].create({
             'picking_id': self.picking_ids[0].id,
             'pack_id': self.delivery_pack_id.id,
+            'warehouse_id': warehouse_id.id,
+            'ship_partner_id': self.picking_ids[0].partner_id.id,
         })
-        return True
 
     @api.multi
     def action_show_wizard(self):

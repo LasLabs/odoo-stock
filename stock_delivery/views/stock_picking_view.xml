@@ -34,29 +34,27 @@
                             <sheet>
                                 <group>
                                     <group string="Carrier">
+                                        <field name="carrier_tracking_ref" />
                                         <field name="partner_id" />
                                         <field name="carrier_weight" />
                                         <field name="carrier_weight_uom_id" />
-                                        <field name="carrier_tracking_ref" />
-                                        
                                     </group>
                                     <group string="Service">
                                         <field name="service_id" />
                                         <field name="date_delivery_est" widget="date" />
-                                        <field name="signed_by" />
-                                        <field name="last_operation_id" />
+                                        <field name="ship_partner_id" />
+                                        <field name="warehouse_id" />
                                     </group>
                                 </group>
                                 <group string="Shipment/Quotes">
                                     <field name="label_id"
                                            context="{'default_picking_id': id,
-                                                     'default_service_id': carrier_id,
+                                                     'default_service_id': service_id,
                                                      }"
                                            />
-                                    <field name="rate_ids"
-                                           context="{'default_picking_id': id,
-                                                     'default_service_id': carrier_id,
-                                                     }">
+                                    <field name="last_operation_id" />
+                                    <field name="signed_by" />
+                                    <field name="rate_ids" readonly="True">
                                         <tree>
                                             <field name="partner_id" />
                                             <field name="service_id" />
@@ -67,11 +65,9 @@
                                         </tree>
                                     </field>
                                 </group>
-                                <group string="Internal">
-                                    <field name="label_id" />
+                                <group string="Internal" groups="base.group_no_one">
                                     <field name="pack_id" />
                                     <field name="move_id" />
-                                    
                                     <field name="operation_ids">
                                         <tree>
                                             <field name="date_updated" widget="datetime" />

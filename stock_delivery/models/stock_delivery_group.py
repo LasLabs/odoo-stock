@@ -51,7 +51,9 @@ class StockDeliveryGroup(models.Model):
         comodel_name='stock.delivery.operation',
         compute='_compute_last_operation_id',
     )
-    carrier_tracking_ref = fields.Char()
+    carrier_tracking_ref = fields.Char(
+        string='Tracking Ref',
+    )
     state = fields.Selection(
         OPERATION_STATES,
         related='last_operation_id.state',
@@ -74,6 +76,21 @@ class StockDeliveryGroup(models.Model):
         string='Carrier Company',
         comodel_name='res.partner',
         related='service_id.partner_id',
+    )
+    ship_partner_id = fields.Many2one(
+        string='Ship To',
+        comodel_name='res.partner',
+        readonly=True,
+    )
+    from_partner_id = fields.Many2one(
+        string='Shipped From',
+        comodel_name='res.partner',
+        related='warehouse_id.partner_id',
+    )
+    warehouse_id = fields.Many2one(
+        string='Warehouse',
+        comodel_name='stock.warehouse',
+        readonly=True,
     )
 
     @api.multi
