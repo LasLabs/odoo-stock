@@ -55,8 +55,11 @@ class StockDeliveryGroup(models.Model):
         string='Tracking Ref',
     )
     state = fields.Selection(
-        OPERATION_STATES,
-        related='last_operation_id.state',
+        [('new', 'New'), ('label', 'Label')] + OPERATION_STATES,
+        default='new',
+        required=True,
+        store=True,
+        compute=lambda s: s._compute_state(),
     )
     signed_by = fields.Char()
     carrier_weight = fields.Float(
@@ -100,6 +103,18 @@ class StockDeliveryGroup(models.Model):
                 self.last_operation_id = rec_id.operation_ids.sorted(
                     key=lambda r: r.date_updated,
                 )[-1]
+
+    @api.multi
+    @api.depends('last_operation_id', 'label_id')
+    def _compute_state(self):
+        for rec_id in self:
+            state = 'new'
+            if rec_id.label_id:
+                if rec_id.last_operation_id:
+                    state = rec_id.last_operation_id.state
+                else:
+                    state = 'label'
+            rec_id.state = state
 
     @api.model
     def create(self, vals):

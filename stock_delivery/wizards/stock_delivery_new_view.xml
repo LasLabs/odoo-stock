@@ -12,9 +12,9 @@
         <field name="name">stock.delivery.new.view.form</field>
         <field name="model">stock.delivery.new</field>
         <field name="arch" type="xml">
-            <form string="Delivery Information">
+            <form>
                 <sheet>
-                    <group>
+                    <group string="Delivery Information">
                         <field name="delivery_pack_id"
                                domain="[('quant_pack_id', '=', quant_pack_id)]"
                                context="{'default_quant_pack_id': quant_pack_id,
@@ -32,13 +32,15 @@
                     </group>
                 </sheet>
                 <footer>
+                    <button special="cancel"
+                            string="No Delivery"
+                            class="pull-left"
+                            />
                     <button name="action_create_delivery"
                             type="object"
                             string="Delivery"
-                            class="oe_highlight"/>
-                    or
-                    <button special="cancel"
-                            string="No Delivery"/>
+                            class="oe_highlight pull-right"
+                            />
                 </footer>
             </form>
         </field>
