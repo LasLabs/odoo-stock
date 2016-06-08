@@ -2,7 +2,7 @@
 # © 2016-TODAY LasLabs Inc.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from openerp import models, fields
+from openerp import models, fields, api
 import openerp.addons.decimal_precision as dp
 
 
@@ -59,3 +59,13 @@ class StockDeliveryRate(models.Model):
     is_guaranteed = fields.Boolean(
         string='Date is Guaranteed?',
     )
+
+    @api.multi
+    def name_get(self):
+        res = []
+        for rec_id in self:
+            name = '%s %s - %s' % (
+                rec_id.partner_id.name, rec_id.service_id.name, rec_id.rate,
+            )
+            res.append((rec_id.id, name))
+        return res

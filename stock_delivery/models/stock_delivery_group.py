@@ -55,8 +55,11 @@ class StockDeliveryGroup(models.Model):
         string='Tracking Ref',
     )
     state = fields.Selection(
-        OPERATION_STATES,
-        related='last_operation_id.state',
+        [('new', 'New'), ('label', 'Label')] + OPERATION_STATES,
+        default='new',
+        required=True,
+        store=True,
+        compute=lambda s: s._compute_state(),
     )
     signed_by = fields.Char()
     carrier_weight = fields.Float(
@@ -101,9 +104,33 @@ class StockDeliveryGroup(models.Model):
                     key=lambda r: r.date_updated,
                 )[-1]
 
+    @api.multi
+    @api.depends('last_operation_id', 'label_id')
+    def _compute_state(self):
+        for rec_id in self:
+            state = 'new'
+            if rec_id.label_id:
+                if rec_id.last_operation_id:
+                    state = rec_id.last_operation_id.state
+                else:
+                    state = 'label'
+            rec_id.state = state
+
     @api.model
     def create(self, vals):
         if not vals.get('carrier_tracking_ref'):
             picking_id = self.env['stock.picking'].browse(vals['picking_id'])
             vals['carrier_tracking_ref'] = picking_id.carrier_tracking_ref
         return super(StockDeliveryGroup, self).create(vals)
+
+    @api.multi
+    def name_get(self):
+        res = []
+        for rec_id in self:
+            name = '[{state}] {pack_name}'.format(
+                state=rec_id.state.capitalize(), pack_name=rec_id.pack_id.name,
+            )
+            if rec_id.carrier_tracking_ref:
+                name += ' - ' + rec_id.carrier_tracking_ref
+            res.append((rec_id.id, name))
+        return res

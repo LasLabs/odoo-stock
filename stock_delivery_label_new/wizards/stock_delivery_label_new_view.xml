@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+    @copyright (C) 2016-TODAY LasLabs, Inc. [https://laslabs.com]
+    @author Dave Lasley <dave@laslabs.com>
+    @license AGPL-3
+-->
+
+<odoo>
+
+    <record id="stock_delivery_label_new_view_form" model="ir.ui.view">
+        <field name="name">stock.delivery.label.view.form</field>
+        <field name="model">stock.delivery.label.new</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <header>
+                        <field name="picking_id" />
+                    </header>
+                    <group>
+                        <field name="group_id" options="{'no_create': True}" />
+                        <field name="rate_id" options="{'no_create': True}" />
+                    </group>
+                </sheet>
+                <footer>
+                    <button special="cancel"
+                            string="Cancel"
+                            />
+                    or
+                    <button name="action_trigger_label"
+                            type="object"
+                            string="Purchase"
+                            class="oe_highlight"
+                            />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <act_window src_model="stock.picking"
+                res_model="stock.delivery.label.new"
+                id="stock_delivery_label_new_action"
+                name="Purchase Shipping"
+                view_mode="form"
+                target="new"
+                key2="client_action_multi" />
+
+</odoo>

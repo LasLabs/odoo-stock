@@ -17,7 +17,7 @@ class StockDeliveryLabel(models.Model):
     pack_id = fields.Many2one(
         string='Delivery Package',
         comodel_name='stock.delivery.pack',
-        required=True,
+        related='group_id.pack_id',
     )
     group_id = fields.Many2one(
         string='Delivery Group',
@@ -48,7 +48,7 @@ class StockDeliveryLabel(models.Model):
     service_id = fields.Many2one(
         string='Carrier Service',
         comodel_name='delivery.carrier',
-        related='picking_id.carrier_id',
+        related='rate_id.service_id',
     )
     partner_id = fields.Many2one(
         string='Carrier Company',
