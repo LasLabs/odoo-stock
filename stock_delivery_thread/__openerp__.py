@@ -14,7 +14,7 @@
     'website': 'https://laslabs.com/',
     'license': 'AGPL-3',
     'data': [
-        'views/stock_delivery_group_view.xml'
+        # 'views/stock_delivery_group_view.xml'
     ],
     'installable': True,
     'auto_install': False,
