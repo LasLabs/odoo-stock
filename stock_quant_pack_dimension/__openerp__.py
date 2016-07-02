@@ -6,7 +6,7 @@
     'name': 'Stock Quant Package Dimension',
     'summary': 'Provide dimensions on packaging',
     'version': '9.0.1.0.0',
-    'category': 'Hidden',
+    'category': 'Warehouse',
     'website': 'https://laslabs.com/',
     'author': 'LasLabs',
     'license': 'AGPL-3',
@@ -16,7 +16,6 @@
         'sale_stock',
     ],
     'data': [
-        'views/product_packaging_view.xml',
         'views/stock_quant_package_view.xml',
     ],
 }

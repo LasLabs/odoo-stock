@@ -2,9 +2,9 @@
    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
    :alt: License: AGPL-3
 
-==============
+=============================
 Stock Quant Package Dimension
-==============
+=============================
 
 This module extends the functionality of sale_stock to add dimensions to packaging.
 
@@ -14,11 +14,11 @@ Usage
 After installation, to use this module, you need to:
 
 * Click on the 'Inventory' tab in the top header.
-* In the left sidebar underneath the 'Configuration' header, click on 'Settings'.
-* Under the 'Traceability' header, next to 'Packages', enable 'Record packages used on packing: pallets, boxes, ...'
-* Under the 'Products' header, next to 'Packaging Methods', enable 'Manage available packaging options per products'.
+* In the left sidebar click on 'Settings'.
+* Enable 'Record packages used on packing: pallets, boxes, ...'
+* Enable 'Manage available packaging options per products'.
 
-These enable package dimensions for both product packaging in 'Inventory'/'Sales' and dimensions for shipping packages.
+These configurations with the module adds dimensions to packages.
 
 Bug Tracker
 ===========

@@ -9,39 +9,40 @@ class TestStockQuantPackage(TransactionCase):
 
     def setUp(self):
         super(TestStockQuantPackage, self).setUp()
-        self.package = self.env['product.packaging'].new()
-        self.uom_m = self.env['product.uom'].search([('name', '=', 'm')])
-        self.uom_cm = self.env['product.uom'].search([('name', '=', 'cm')])
 
-    def test_it_computes_volume_in_cm(self):
-        self.package.length = 10.
-        self.package.height = 200.
-        self.package.width = 100.
-        self.package.dimensional_uom_id = self.uom_cm
-        self.package.onchange_calculate_volume()
+        self.uom_m = self.env.ref('product.product_uom_meter')
+        self.uom_cm = self.env.ref('product.product_uom_cm')
+        self.package = self.env['stock.quant.package'].create({
+            'length': 10,
+            'width': 200,
+            'height': 100,
+            'dimensional_uom_id': self.uom_m.id,
+        })
+
+    def test_calculate_volume_in_cm(self):
+        ''' Tests _computes_volume conversion to cm '''
+        self.package.dimensional_uom_id = self.uom_cm.id
+        self.package._calculate_volume()
         self.assertAlmostEqual(
             0.2,
-            self.package.volume
+            self.package.volume,
+            'Should be almost equal to 0.2'
         )
 
-    def test_it_computes_volume_in_meters(self):
-        self.package.length = 6.
-        self.package.height = 2.
-        self.package.width = 10.
-        self.package.dimensional_uom_id = self.uom_m
-        self.package.onchange_calculate_volume()
+    def test_calculate_volume_in_meters(self):
+        ''' Tests _computes_volume using meters '''
+        self.package._calculate_volume()
         self.assertAlmostEqual(
-            120,
-            self.package.volume
+            200000,
+            self.package.volume,
+            'Should be almost equal to 200,000'
         )
 
     def test_calculate_volume_none_dimension(self):
-        '''Tests _calculate_volume for empty dimensions'''
+        '''Tests calculate_volume for empty dimensions'''
         self.package.length = None
-        self.package.height = None
-        self.package.width = None
-        self.package.dimensional_uom_id = None
-        self.assertFalse(
-            self.package.onchange_calculate_volume(),
-            'Should return False if falsey values present',
+        self.assertEquals(
+            None,
+            self.volume,
+            'Volume should be None if one of any dimensions not present',
         )
