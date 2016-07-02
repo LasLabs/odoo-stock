@@ -41,8 +41,7 @@ class TestStockQuantPackage(TransactionCase):
     def test_calculate_volume_none_dimension(self):
         '''Tests calculate_volume for empty dimensions'''
         self.package.length = None
-        self.assertEquals(
-            None,
-            self.volume,
+        self.assertFalse(
+            self.package.volume,
             'Volume should be None if one of any dimensions not present',
         )

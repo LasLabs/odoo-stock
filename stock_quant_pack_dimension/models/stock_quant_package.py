@@ -13,7 +13,7 @@ class StockQuantPackage(models.Model):
     height = fields.Float('Height')
     dimensional_uom_id = fields.Many2one(
         'product.uom',
-        string='Dimension UoM',
+        string='Dimensional UoM',
         domain=lambda self: self._get_dimensional_uom_domain(),
         help='UoM for package length, height, width',
     )
@@ -31,13 +31,13 @@ class StockQuantPackage(models.Model):
             self.length,
             self.height,
             self.width,
-            self.dimension_uom_id,
+            self.dimensional_uom_id,
         ]
 
         if all(dimensions):
-            length_m = self.to_meters(self.length, self.dimensional_uom_id)
-            height_m = self.to_meters(self.height, self.dimensional_uom_id)
-            width_m = self.to_meters(self.width, self.dimensional_uom_id)
+            length_m = self._to_meters(self.length, self.dimensional_uom_id)
+            height_m = self._to_meters(self.height, self.dimensional_uom_id)
+            width_m = self._to_meters(self.width, self.dimensional_uom_id)
             self.volume = length_m * height_m * width_m
 
     @api.model
